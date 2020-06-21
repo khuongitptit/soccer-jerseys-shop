@@ -1,0 +1,56 @@
+//default 4k
+.product-container {
+    background-color: rgb(228, 228, 206);
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    max-height: 250px;
+    box-shadow: 4px 4px rgb(184, 192, 201);
+    &:hover {
+        box-shadow: 4px 4px rgb(223, 22, 179);
+    }
+    .link-to-product {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        img.product-thumb {
+            position: relative;
+            border: 1px solid rgb(24, 107, 65);
+            margin-left: 2.5%;
+            margin-top: 3%;
+            width: 95%;
+            height: auto;
+            object-fit: cover;
+            object-position: top center;
+        }
+        img.symbol {
+            position: absolute;
+            top: 70%;
+            left: 3%;
+            width: 25%;
+            margin: 5%;
+        }
+        .product-price {
+            position: absolute;
+            bottom: 5%;
+            left: 40%;
+            width: 40%;
+            height: 20px;
+            sup {
+                color: navy;
+                background-color: rgb(35, 245, 217);
+            }
+        }
+    }
+}
+@media screen and (max-width: 587px) {
+    .product-container {
+        max-width: 240px;
+    }
+}
+@media screen and (max-width: 430px) {
+    .product-container {
+        max-width: unset;
+        max-height: unset;
+    }
+}

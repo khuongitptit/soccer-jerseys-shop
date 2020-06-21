@@ -1,0 +1,241 @@
+@mixin form-item-hasFeedback {
+    .ant-form-item-label {
+        width: 30%;
+    }
+    .ant-form-item-control {
+        .ant-form-item-control-input {
+            margin-top: 5px;
+            height: 32px;
+        }
+        input {
+            width: 70%;
+        }
+        .ant-input-suffix {
+            width: 4%;
+        }
+        .ant-form-item-children-icon {
+            width: 5%;
+            margin-right: 25%;
+        }
+    }
+}
+@mixin smaller-than-575px-form-item-hasFeedback {
+    .ant-form-item-label {
+        width: 30%;
+        margin-left: 15%;
+        height: 25px;
+    }
+    .ant-form-item-control {
+        input {
+            width: 70%;
+            margin: 15%;
+        }
+        .ant-input-suffix {
+            width: 4%;
+        }
+        .ant-form-item-children-icon {
+            width: 5%;
+            margin-right: 25%;
+        }
+    }
+}
+
+.info-form-mask {
+    position: absolute;
+    width: 80%;
+    top: 80px;
+    .info-form-container {
+        width: 100%;
+        position: relative;
+        bottom: 5px;
+        margin: auto;
+        background-color: transparent;
+        backdrop-filter: blur(7px);
+        max-width: 600px;
+        border: 1px solid rgb(235, 225, 225);
+        box-shadow: 2px 2px rgb(231, 226, 220);
+        .basic-info-form {
+            max-width: 600px;
+            padding: 70px 0;
+            .edit-control {
+                .edit-button {
+                    margin-left: 20%;
+                    background-color: rgb(182, 197, 45);
+                    .ant-switch-inner {
+                        .anticon {
+                            margin-top: 2px;
+                            font-size: larger;
+                            color: black;
+                        }
+                    }
+                }
+                .editing-text {
+                    margin-left: 10px;
+                    color: rgb(199, 243, 38);
+                }
+            }
+            .form-title h6 {
+                font-size: 2em;
+                text-transform: uppercase;
+                text-align: center;
+                background-color: rgba(150, 165, 147, 0.7);
+                color: #12110f;
+            }
+            .fullName-item {
+                @include form-item-hasFeedback();
+            }
+            .gender-item {
+                .ant-form-item-label {
+                    width: 30%;
+                }
+                .ant-form-item-control .gender-select {
+                    width: 70%;
+                }
+            }
+            .phone-item {
+                @include form-item-hasFeedback();
+            }
+            .address-item {
+                .ant-form-item-label {
+                    width: 30%;
+                }
+                .city-select,
+                .district-select,
+                .commune-select,
+                .houseNumber-input {
+                    width: 60%;
+                }
+            }
+            .save-item {
+                .save-button {
+                    width: 30%;
+                    margin-left: 35%;
+                }
+            }
+        }
+        .password-form {
+            .current-password-item,
+            .new-password-item,
+            .new-password-confirm-item {
+                .ant-form-item-label {
+                    width: 30%;
+                }
+                .ant-form-item-control {
+                    .password-input {
+                        width: 70%;
+                    }
+                    .ant-input-suffix {
+                        width: 4%;
+                    }
+                    .ant-form-item-children-icon {
+                        width: 5%;
+                        margin-right: 25%;
+                    }
+                }
+            }
+            .save-item {
+                .save-button {
+                    width: 30%;
+                    margin-left: 35%;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 575px) {
+    .info-form-mask {
+        .info-form-container {
+            .basic-info-form {
+                max-width: 600px;
+                .edit-control {
+                    .edit-button {
+                        margin-left: 20%;
+                        background-color: rgb(182, 197, 45);
+                        .ant-switch-inner {
+                            .anticon {
+                                margin-top: 2px;
+                                font-size: larger;
+                                color: black;
+                            }
+                        }
+                    }
+                    .editing-text {
+                        margin-left: 10px;
+                        color: rgb(199, 243, 38);
+                    }
+                }
+                .form-title h6 {
+                    font-size: 5vw;
+                    text-transform: uppercase;
+                    text-align: center;
+                    background-color: rgba(150, 165, 147, 0.7);
+                    color: #12110f;
+                }
+                .fullName-item {
+                    @include smaller-than-575px-form-item-hasFeedback();
+                }
+                .gender-item {
+                    .ant-form-item-label {
+                        width: 30%;
+                        margin-left: 15%;
+                    }
+                    .ant-form-item-control .gender-select {
+                        width: 70%;
+                        margin-left: 15%;
+                    }
+                }
+                .phone-item {
+                    @include smaller-than-575px-form-item-hasFeedback();
+                }
+                .address-item {
+                    .ant-form-item-label {
+                        width: 30%;
+                        margin-left: 15%;
+                    }
+                    .city-select,
+                    .district-select,
+                    .commune-select,
+                    .houseNumber-input {
+                        width: 60%;
+                        margin-left: 15%;
+                    }
+                }
+                .save-item {
+                    .save-button {
+                        width: 80%;
+                        margin-left: 10%;
+                    }
+                }
+            }
+            .password-form {
+                .current-password-item,
+                .new-password-item,
+                .new-password-confirm-item {
+                    .ant-form-item-label {
+                        width: 30%;
+                        margin-left: 15%;
+                    }
+                    .ant-form-item-control {
+                        .password-input {
+                            width: 70%;
+                            margin-left: 15%;
+                        }
+                        .ant-input-suffix {
+                            width: 4%;
+                        }
+                        .ant-form-item-children-icon {
+                            width: 5%;
+                            margin-right: 25%;
+                        }
+                    }
+                }
+                .save-item {
+                    .save-button {
+                        width: 80%;
+                        margin-left: 10%;
+                    }
+                }
+            }
+        }
+    }
+}

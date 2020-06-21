@@ -1,0 +1,50 @@
+{
+    "countries": [
+        "Anh",
+        "Bỉ",
+        "Tây Ban Nha",
+        "Bồ Đào Nha",
+        "Croatia",
+        "Đức",
+        "Hà Lan",
+        "Hy Lạp",
+        "Nga",
+        "Pháp",
+        "Thụy Điển",
+        "Thụy Sĩ",
+        "Argentina",
+        "Uruguay"
+    ],
+    "leagues": {
+        "Premier League": [
+            "Arsenal",
+            "Chelsea",
+            "Everton",
+            "Leicester City",
+            "Liverpool",
+            "Manchester City",
+            "Manchester United"
+        ],
+        "La Liga": [
+            "FC Barcelona",
+            "Real Madrid",
+            "Atlético Madrid",
+            "Athletic Bilbao"
+        ],
+        "Bundes Liga": [
+            "Borussia Dortmund",
+            "FC Bayern Munich"
+        ],
+        "Series A": [
+            "Juventus",
+            "Napoli",
+            "AC Milan",
+            "Inter Milan"
+        ],
+        "Ligue 1": [
+            "AS Monaco",
+            "Paris Saint German",
+            "Olympique Lyon"
+        ]
+    }
+}

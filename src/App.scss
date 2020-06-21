@@ -1,0 +1,53 @@
+@import './components/Menu/Menu.scss';
+@import './pages/SignIn/SignIn.scss';
+@import './pages/SignUp/SignUp.scss';
+@import './pages/UserInfo/UserInfo.scss';
+@import './components/ProductItem/ProductItem.scss';
+@import './pages/ProductsPage/ProductsPage.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+body {
+    font-family: 'Roboto Slab', serif;
+    background: url('/assets/4kbg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    .app {
+        width: 80%;
+        background-color: transparent;
+        margin: auto;
+        .anticon {
+            vertical-align: baseline;
+        }
+    }
+    .ant-select-dropdown .ant-select-item :hover,
+    .ant-select-dropdown .ant-select-item ::selection {
+        background-color: turquoise;
+    }
+    .ant-menu-submenu {
+        .ant-menu {
+            background-color: cadetblue;
+        }
+        .ant-menu-item {
+            &:hover {
+                background-color: cyan;
+            }
+            a {
+                &:hover {
+                    color: darkred;
+                }
+            }
+        }
+        .ant-menu-submenu .ant-menu-submenu-title {
+            &:hover {
+                border-radius: 5px;
+                background-color: peru;
+            }
+        }
+    }
+    .ant-menu {
+        .ant-menu-item {
+            border-bottom: none;
+            &:hover {
+                border-bottom: none;
+            }
+        }
+    }
+}

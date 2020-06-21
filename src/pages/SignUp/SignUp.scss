@@ -1,0 +1,147 @@
+@mixin form-columns {
+    .ant-form-item-label {
+        width: 30%;
+        label {
+            color: rgb(252, 236, 144);
+        }
+    }
+    .ant-form-item-control {
+        width: 70%;
+        margin-left: 5px;
+    }
+}
+@mixin form-item-hasFeedback {
+    .ant-form-item-label {
+        width: 30%;
+        label {
+            color: rgb(252, 236, 144);
+        }
+    }
+    .ant-form-item-control {
+        input,
+        .ant-form-item-children-icon {
+            width: 70%;
+        }
+    }
+}
+.signup-form-mask {
+    position: absolute;
+    width: 80%;
+    top: 50px;
+    .signup-form-container {
+        position: relative;
+        bottom: 15px;
+        //height: 70vh;
+        background-color: transparent;
+        backdrop-filter: blur(5px);
+        //padding-top: 2vh;
+        max-width: 600px;
+        margin: 5vh auto 0 auto;
+        padding-top: 2vh;
+        border: 1px solid rgb(235, 225, 225);
+        box-shadow: 2px 2px rgb(231, 226, 220);
+        .signup-form {
+            max-width: 600px;
+            padding: 0 20px;
+            .form-title h6 {
+                font-size: 2em;
+                text-transform: uppercase;
+                text-align: center;
+                background-color: rgba(150, 165, 147, 0.7);
+                color: #12110f;
+            }
+            .fullName-item {
+                .ant-form-item-label {
+                    width: 30%;
+                    label {
+                        color: rgb(252, 236, 144);
+                    }
+                }
+                .ant-form-item-control {
+                    .fullName-input,
+                    .ant-form-item-children-icon {
+                        width: 70%;
+                    }
+                }
+            }
+            .gender-item {
+                .ant-form-item-label {
+                    width: 30%;
+                    label {
+                        color: rgb(252, 236, 144);
+                    }
+                }
+                .ant-form-item-control .gender-select {
+                    width: 70%;
+                }
+            }
+            .phone-item {
+                @include form-item-hasFeedback();
+            }
+            .address-item {
+                .ant-form-item-label {
+                    width: 30%;
+                    label {
+                        color: rgb(252, 236, 144);
+                    }
+                }
+                .city-select,
+                .district-select,
+                .commune-select,
+                .houseNumber-input {
+                    width: 60%;
+                }
+            }
+            .email-item {
+                .ant-form-item-label {
+                    width: 30%;
+                    label {
+                        color: rgb(252, 236, 144);
+                    }
+                }
+                .ant-form-item-control {
+                    .email-input,
+                    .ant-form-item-children-icon {
+                        width: 70%;
+                    }
+                }
+            }
+            .password-item {
+                .ant-form-item-label {
+                    width: 30%;
+                    label {
+                        color: rgb(252, 236, 144);
+                    }
+                }
+                .ant-form-item-control {
+                    .password-input,
+                    .ant-form-item-children-icon {
+                        width: 70%;
+                    }
+                }
+            }
+            .password-confirm-item {
+                .ant-form-item-label {
+                    width: 30%;
+                    label {
+                        color: rgb(252, 236, 144);
+                    }
+                }
+                .ant-form-item-control {
+                    .password-confirm-input,
+                    .ant-form-item-children-icon {
+                        width: 70%;
+                    }
+                }
+            }
+            .accept-checkbox-item {
+                margin-left: 20%;
+            }
+            .submit-button {
+                margin-top: 3%;
+                width: 40%;
+                margin-left: 30%;
+            }
+        }
+    }
+}

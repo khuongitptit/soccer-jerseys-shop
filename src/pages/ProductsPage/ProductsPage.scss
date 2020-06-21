@@ -1,0 +1,22 @@
+.products-container {
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .pagination {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        width: 60%;
+        margin-left: 20%;
+        ul {
+            .ant-pagination-prev,
+            .ant-pagination-item,
+            .ant-pagination-next {
+                border-radius: 5px;
+                border: 1px solid mediumblue;
+                box-shadow: 2px 2px mediumorchid;
+            }
+        }
+    }
+}

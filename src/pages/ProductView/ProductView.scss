@@ -1,0 +1,167 @@
+@mixin action-btn {
+    button {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(182, 218, 85, 0.692);
+        color: rgb(28, 36, 1);
+        border-radius: 10px;
+    }
+}
+.product-view {
+    height: auto;
+    position: relative;
+    top: 80px;
+    bottom: 20px;
+    width: 100%;
+    background-color: transparent;
+    backdrop-filter: blur(7px);
+    .title {
+        background-color: transparent;
+        border-radius: 5px;
+        border: 1px double chocolate;
+        text-align: center;
+        .symbol {
+            width: 60px;
+            height: auto;
+            margin-top: 10px;
+        }
+        p {
+            font-size: 20px;
+            font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            padding: 10px;
+            color: rgb(145, 241, 35);
+        }
+    }
+    .info {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        .product-info {
+            .images-slider {
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                max-width: 200px;
+                width: 80%;
+                margin-top: 5%;
+                .image {
+                    width: 100%;
+                }
+            }
+            .price-desc {
+                margin-top: 30px;
+                width: 100%;
+                .price {
+                    width: 100%;
+                    button {
+                        position: relative;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background-color: yellow;
+                        border-radius: 10px;
+                        font-size: 20px;
+                        color: orangered;
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                }
+                .desc {
+                    text-align: center;
+                    margin-top: 20px;
+                    font-size: 18px;
+                    color: black;
+                }
+            }
+            .quantity {
+                width: 100%;
+                .group {
+                    width: fit-content;
+                    margin: auto;
+                    button {
+                        border-radius: 100%;
+                        margin: 10px;
+                        background-color: orange;
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                    input {
+                        min-width: 30px;
+                        max-width: 50px;
+                        background-color: peachpuff;
+                        color: maroon;
+                    }
+                }
+            }
+        }
+        .purchase-info {
+            background-color: transparent;
+            .name-custom,
+            .number-custom {
+                label {
+                    margin-left: 15%;
+                    padding-right: 50%;
+                    color: rgb(210, 252, 22);
+                    font-size: larger;
+                }
+                input {
+                    min-width: 20px;
+                    width: 70%;
+                    margin-left: 15%;
+                    background-color: peachpuff;
+                    color: maroon;
+                }
+            }
+            .action {
+                margin-top: 50px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                grid-template-rows: repeat(2, 60px);
+                .add-to-cart {
+                    height: 50px;
+                    margin: 10px;
+                    @include action-btn();
+                    padding-bottom: 10px;
+                }
+                .buy-now {
+                    height: 50px;
+                    margin: 10px;
+                    @include action-btn();
+                    padding-bottom: 10px;
+                }
+            }
+        }
+    }
+}
+.modal-buy-product {
+    .ant-modal-content {
+        .image {
+            width: 80%;
+            height: auto;
+        }
+        .customName {
+            margin-top: 20px;
+        }
+    }
+}
+@media screen and (max-width: 375px) {
+    .product-view {
+        top: 60px;
+        .title {
+            .symbol {
+                width: 50px;
+                margin-top: 5px;
+            }
+            p {
+                font-size: 18px;
+            }
+        }
+        .info {
+            margin-top: 5px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+    }
+}
