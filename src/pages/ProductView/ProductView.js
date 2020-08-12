@@ -160,6 +160,10 @@ const ProductView = props => {
                             </button>
                         </div>
                     </div>
+                    <div className="total">
+                        <p className="label">Tổng tiền</p>
+                        <p className="result">{product.price * quantity}đ</p>
+                    </div>
                 </div>
                 <div className="purchase-info">
                     <div className="name-custom">

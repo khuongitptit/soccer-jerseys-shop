@@ -17,7 +17,7 @@ const ProductsContainer = props => {
         setPage(page)
     }
     const getProductsByPage = () => {
-        const itemsPerPage = 15
+        const itemsPerPage = 10
         const startIndex = (page - 1) * itemsPerPage
         const endIndex = startIndex + itemsPerPage
         const productsByPage = products.slice(startIndex, endIndex)

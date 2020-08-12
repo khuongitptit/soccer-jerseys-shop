@@ -8,7 +8,7 @@ const PurchaseHistoryContainer = props => {
     const [purchaseHistorySorted, setPurchaseHistorySorted] = useState(
         purchaseHistory
     )
-    const [sort, setSort] = useState('newest')
+    const [sort, setSort] = useState('latest')
     const userId = userAccount.id
     useEffect(() => {
         fetchPurchaseHistory(userId)
@@ -16,7 +16,7 @@ const PurchaseHistoryContainer = props => {
     const onChangeSort = e => {
         const sortValue = e.target.value
         setSort(sortValue)
-        if (sort === 'newest') {
+        if (sortValue === 'latest') {
             setPurchaseHistorySorted(purchaseHistory)
         } else {
             const tmp = [...purchaseHistory]

@@ -11,7 +11,7 @@ const { TabPane } = Tabs
 const UserInfo = props => {
     const { editable } = props
     const { userBasicInfo, userPassword } = props
-    const { validation } = props
+    const { validation, passwordConfirmValidation } = props
     const { fieldsIsChanged } = props
     const {
         onFullNameChange,
@@ -195,12 +195,7 @@ const UserInfo = props => {
                                             )}
                                         </CommuneSelect>
                                     </Item>
-                                    <Item
-                                        name={['address', 'housenumber']}
-                                        //hasFeedback={fieldsIsChanged.house_number}
-                                        // validateStatus={validation.house_number ? "success" : "error"}
-                                        // help={!validation.house_number ? "Số nhà không hợp lệ" : null}
-                                    >
+                                    <Item name={['address', 'housenumber']}>
                                         <HouseNumberInput
                                             account={userBasicInfo}
                                             onHouseNumberChange={
@@ -261,19 +256,19 @@ const UserInfo = props => {
                             <Item
                                 className="new-password-confirm-item"
                                 label="Nhập lại mật khẩu mới"
-                                hasFeedback={userPassword.newPasswordConfirm}
+                                hasFeedback={
+                                    userPassword.newPasswordConfirm !== ''
+                                }
                                 validateStatus={
-                                    userPassword.newPasswordConfirm == ''
-                                        ? null
-                                        : validation.passwordConfirm
+                                    passwordConfirmValidation
                                         ? 'success'
                                         : 'error'
                                 }
                                 help={
-                                    userPassword.newPasswordConfirm == ''
-                                        ? null
-                                        : !validation.passwordConfirm
-                                        ? 'Mật khẩu không trùng khớp'
+                                    userPassword.newPasswordConfirm !== ''
+                                        ? !passwordConfirmValidation
+                                            ? 'Mật khẩu không trùng khớp'
+                                            : null
                                         : null
                                 }
                             >

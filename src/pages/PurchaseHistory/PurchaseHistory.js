@@ -98,8 +98,8 @@ const PurchaseHistory = props => {
         <div className="purchase-history">
             <div className="sort">
                 <Radio.Group onChange={onChangeSort} value={sort}>
-                    <Radio value="newest">Gần đây nhất</Radio>
                     <Radio value="latest">Cũ nhất</Radio>
+                    <Radio value="newest">Gần đây nhất</Radio>
                 </Radio.Group>
             </div>
             <table>{mapPurchaseHistory()}</table>

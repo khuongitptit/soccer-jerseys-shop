@@ -225,6 +225,7 @@ export const actionSignInRequest = (username, password) => {
             })
             .catch(err => {
                 //sign in failed
+                dispatch(actionSignInLoading(false))
                 dispatch(actionSetSignedInStatus(false))
                 dispatch(actionSetSignInFailStatus(true))
                 const timer1 = setTimeout(() => {
@@ -270,7 +271,6 @@ export const actionSignOutRequest = () => {
 }
 
 export const actionUpdateInfoRequest = userBasicInfo => {
-    console.log(userBasicInfo)
     return dispatch => {
         db.collection('users')
             .doc(userBasicInfo.id)
@@ -299,11 +299,9 @@ export const actionUpdateInfoSuccess = updateSuccess => {
         updateSuccess,
     }
 }
-export const actionUpdatePasswordRequest = userPassword => {
-    return () => {
+export const actionChangePasswordRequest = userPassword => {
+    return dispatch => {
         const user = firebase.auth().currentUser
-        console.log(firebase.auth().currentUser.email)
-        console.log(userPassword.newPassword)
         user.reauthenticateWithCredential(
             firebase.auth.EmailAuthProvider.credential(
                 firebase.auth().currentUser.email,
@@ -311,13 +309,23 @@ export const actionUpdatePasswordRequest = userPassword => {
             )
         )
             .then(() => {
-                user.updatePassword(userPassword.newPassword).then(res => {
-                    console.log(res)
+                user.updatePassword(userPassword.newPassword).then(() => {
+                    dispatch(actionChangePasswordSuccess(true))
+                    const timer1 = setTimeout(() => {
+                        dispatch(actionChangePasswordSuccess(false))
+                        return clearTimeout(timer1)
+                    }, 100)
                 })
             })
             .catch(err => {
                 console.log(err)
             })
+    }
+}
+export const actionChangePasswordSuccess = changePasswordSuccess => {
+    return {
+        type: types.CHANGE_PASSWORD_SUCCESS,
+        changePasswordSuccess,
     }
 }
 export const actionFetchCartRequest = userId => {
@@ -336,7 +344,6 @@ export const actionFetchCartRequest = userId => {
                         quantity: cartItem.quantity,
                     })
                 })
-                console.log(cart)
                 dispatch(actionFetchCart(cart))
             })
     }
@@ -363,7 +370,6 @@ export const actionAddToCartRequest = (
             .get() //check if user have this product with the same name and number yet
             .then(res => {
                 if (res.docs.length) {
-                    console.log('yes')
                     //if yes
                     let key
                     for (key in res.docs) break //get first key of user collection

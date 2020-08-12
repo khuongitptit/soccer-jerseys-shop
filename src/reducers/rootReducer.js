@@ -5,6 +5,7 @@ import signedInStatus from './signedInStatus'
 import signInFail from './signInFail'
 import userCart from './userCart'
 import updateInfoSuccess from './updateInfoSuccess'
+import changePasswordSuccess from './changePasswordSuccess'
 import signUp from './signUp'
 import filter from './filter'
 import page from './page'
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     signInFail,
     userCart,
     updateInfoSuccess,
+    changePasswordSuccess,
     signUp,
     filter,
     page,

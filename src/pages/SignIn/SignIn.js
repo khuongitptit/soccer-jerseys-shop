@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
-import { Row, Button, Form, Input, message, Divider } from 'antd'
+import { Button, Form, Input, message, Divider } from 'antd'
 import { Link } from 'react-router-dom'
-import { LoadingOutlined } from '@ant-design/icons'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 const SignIn = props => {
     const {
@@ -34,20 +33,6 @@ const SignIn = props => {
             message.error('Tài khoản hoặc mật khẩu không đúng')
         }
     }, [signInFail])
-    const formStyle = {
-        labelCol: {
-            span: 8,
-        },
-        wrapperCol: {
-            span: 5,
-        },
-    }
-    const chkbStyle = {
-        wrapperCol: {
-            offset: 8,
-            span: 8,
-        },
-    }
     return (
         <div className="login-form-mask">
             <div className="login-form-container">
@@ -97,6 +82,7 @@ const SignIn = props => {
                             type="primary"
                             htmlType="submit"
                             className="login-form-button"
+                            loading={signInLoading}
                         >
                             Đăng nhập
                         </Button>
@@ -107,25 +93,7 @@ const SignIn = props => {
                             <Link to="/signup"> Đăng kí </Link> ngay
                         </span>
                     </Form.Item>
-                    <Divider>Hoặc</Divider>
-                    <Form.Item className="firebaseauth">
-                        <p>Đăng nhập với</p>
-                        <StyledFirebaseAuth
-                            className="auth-cards"
-                            uiConfig={uiConfig}
-                            firebaseAuth={firebaseAuth}
-                        />
-                    </Form.Item>
                 </Form>
-            </div>
-            <div
-                className="loading-overlay"
-                style={{ display: signInLoading ? 'block' : 'none' }}
-            >
-                <div className="container">
-                    <LoadingOutlined className="loading-spinner" />{' '}
-                    <span>Signing in...</span>
-                </div>
             </div>
         </div>
     )

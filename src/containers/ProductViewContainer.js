@@ -118,11 +118,7 @@ const ProductViewContainer = props => {
                         }
                         placement="left"
                     >
-                        <img
-                            className="image"
-                            alt="logo"
-                            src={product.img[0]}
-                        />
+                        <img className="image" alt="logo" src={product.img} />
                     </Tooltip>
                     <div className="customName">
                         Tên tùy chọn:{' '}

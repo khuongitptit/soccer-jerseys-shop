@@ -6,7 +6,7 @@ import tree from '../utils/tree.json'
 import { Select, message } from 'antd'
 import {
     actionUpdateInfoRequest,
-    actionUpdatePasswordRequest,
+    actionChangePasswordRequest,
 } from '../actions/index'
 const { Option } = Select
 function removeAscent(str) {
@@ -33,12 +33,12 @@ function removeAscent(str) {
 
 const UserInfoContainer = props => {
     const DistrictRef = React.createRef()
-    const { userAccount } = props
+    const { userAccount, updateInfoSuccess, changePasswordSuccess } = props
     const validateRegExp = {
         fullName: /^[A-Z][a-z]*\s([A-Z][a-z]*\s)*([AEIOU][a-z]*|[^AEIOU][a-z]+)\s*$/,
         phone: /^(09[\d]{8}|03[\d]{9})$/,
         email: /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
-        password: /^[A-Za-z\d~`!@#$%^&*()-_+=|}]{["':;?/>.<,]{6,32}$/,
+        password: /^[A-Za-z\d\~\`\!\@\#\$\%\^\&\*\(\)\-\_\+\=\|\}\]\{\[\"\'\:\;\?\/\>\.\<\,]{6,32}$/,
     }
     const [userBasicInfo, setUserBasicInfo] = useState({ ...userAccount })
     const [userPassword, setUserPassword] = useState({
@@ -53,8 +53,10 @@ const UserInfoContainer = props => {
         phone: true,
         houseNumber: true,
         password: true,
-        passwordConfirm: true,
     })
+    const [passwordConfirmValidation, setPasswordConfirmValidation] = useState(
+        true
+    )
 
     const [fieldsIsChanged, setFieldsIsChanged] = useState({
         fullName: false,
@@ -68,7 +70,11 @@ const UserInfoContainer = props => {
         password: false,
         passwordConfirm: false,
     })
-    const { updateInfoSuccess } = props
+    useEffect(() => {
+        if (changePasswordSuccess) {
+            message.success('Đổi mật khẩu thành công')
+        }
+    }, [changePasswordSuccess])
     useEffect(() => {
         if (updateInfoSuccess) {
             message.success('Đã cập nhật thông tin')
@@ -175,7 +181,6 @@ const UserInfoContainer = props => {
                                 districtId
                             )
                         ) {
-                            //console.log("aaa" + tree[cityId]["quan-huyen"][districtId]["name"])
                             if (
                                 tree[cityId]['quan-huyen'][districtId][
                                     'code'
@@ -189,7 +194,6 @@ const UserInfoContainer = props => {
                                             'xa-phuong'
                                         ].hasOwnProperty(communeId)
                                     ) {
-                                        //console.log(tree[cityId]["quan-huyen"][districtId]["xa-phuong"][communeId]["code"])
                                         listCommunesOfDistrict.push(
                                             <Option
                                                 key={
@@ -226,39 +230,6 @@ const UserInfoContainer = props => {
         }
         return listCommunesOfDistrict
     }
-
-    const findFirstDistrictAndCommuneWhenCityChange = cityCode => {
-        for (var codeOfFirstDistrict in tree[cityCode]['quan-huyen']) break
-        for (var codeOfFirstCommune in tree[cityCode]['quan-huyen'][
-            codeOfFirstDistrict
-        ]['xa-phuong'])
-            break
-        return {
-            district:
-                tree[cityCode]['quan-huyen'][codeOfFirstDistrict][
-                    'name_with_type'
-                ],
-            commune:
-                tree[cityCode]['quan-huyen'][codeOfFirstDistrict]['xa-phuong'][
-                    codeOfFirstCommune
-                ]['name_with_type'],
-        }
-    }
-    const findFirstCommuneWhenDistrictChange = (cityCode, districtCode) => {
-        for (var codeOfFirstCommune in tree[cityCode]['quan-huyen'][
-            districtCode
-        ]['xa-phuong'])
-            break
-        return tree[cityCode]['quan-huyen'][districtCode]['xa-phuong'][
-            codeOfFirstCommune
-        ]['name_with_type']
-    }
-    // console.log(findFirstCommuneWhenDistrictChange(
-    //     findCityCodeByName(userBasicInfo.address.city),
-    //     findDistricCodeByCityCodeAndDistrictName(
-    //         findCityCodeByName(userBasicInfo.address.city),
-    //         userBasicInfo.address.district
-    //     )))
     const onBasicInfoFormFinish = () => {
         //console.log(userBasicInfo)
         props.onBasicInfoFormFinish(userBasicInfo)
@@ -345,9 +316,6 @@ const UserInfoContainer = props => {
                 district: null,
                 commune: null,
                 houseNumber: null,
-                // district: findFirstDistrictAndCommuneWhenCityChange(findCityCodeByName(value)).district,
-                // commune: findFirstDistrictAndCommuneWhenCityChange(findCityCodeByName(value)).commune,
-                // houseNumber: null
             },
         })
     }
@@ -366,13 +334,6 @@ const UserInfoContainer = props => {
                 district: value,
                 commune: null,
                 houseNumber: null,
-                // commune: findFirstCommuneWhenDistrictChange(
-                //     findCityCodeByName(userBasicInfo.address.city),
-                //     findDistricCodeByCityCodeAndDistrictName(
-                //         findCityCodeByName(userBasicInfo.address.city),
-                //         userBasicInfo.address.district
-                //     )),
-                // houseNumber: null
             },
         })
     }
@@ -421,10 +382,6 @@ const UserInfoContainer = props => {
         })
     }
     const onNewPasswordChange = e => {
-        setFieldsIsChanged({
-            ...fieldsIsChanged,
-            password: true,
-        })
         setUserPassword({
             ...userPassword,
             newPassword: e.target.value,
@@ -442,37 +399,21 @@ const UserInfoContainer = props => {
             })
         }
         if (newPasswordTest === userPassword.newPasswordConfirm) {
-            setValidation({
-                ...validation,
-                passwordConfirm: true,
-            })
+            setPasswordConfirmValidation(true)
         } else {
-            setValidation({
-                ...validation,
-                passwordConfirm: false,
-            })
+            setPasswordConfirmValidation(false)
         }
     }
     const onNewPasswordConfirmChange = e => {
-        setFieldsIsChanged({
-            ...fieldsIsChanged,
-            password: true,
-        })
         setUserPassword({
             ...userPassword,
             newPasswordConfirm: e.target.value,
         })
         const newPasswordConfirmTest = e.target.value
         if (userPassword.newPassword === newPasswordConfirmTest) {
-            setValidation({
-                ...validation,
-                passwordConfirm: true,
-            })
+            setPasswordConfirmValidation(true)
         } else {
-            setValidation({
-                ...validation,
-                passwordConfirm: false,
-            })
+            setPasswordConfirmValidation(false)
         }
     }
 
@@ -498,6 +439,7 @@ const UserInfoContainer = props => {
             onNewPasswordChange={onNewPasswordChange}
             onNewPasswordConfirmChange={onNewPasswordConfirmChange}
             validation={validation}
+            passwordConfirmValidation={passwordConfirmValidation}
             fieldsIsChanged={fieldsIsChanged}
             mapCitiesFromTreeToOptions={mapCitiesFromTreeToOptions}
             mapDistrictsOfCityToOptions={mapDistrictsOfCityToOptions}
@@ -515,6 +457,7 @@ const mapStateToProps = state => {
     return {
         userAccount: state.userAccount,
         updateInfoSuccess: state.updateInfoSuccess,
+        changePasswordSuccess: state.changePasswordSuccess,
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -523,7 +466,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(actionUpdateInfoRequest(userBasicInfo))
         },
         onPasswordFormFinish: userPassword => {
-            dispatch(actionUpdatePasswordRequest(userPassword))
+            dispatch(actionChangePasswordRequest(userPassword))
         },
     }
 }

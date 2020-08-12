@@ -96,6 +96,20 @@
                     }
                 }
             }
+            .total {
+                width: 80%;
+                box-shadow: 2px 2px white;
+                margin: auto;
+                text-align: center;
+                .label {
+                    color: azure;
+                    font-size: 20px;
+                }
+                .result {
+                    color: rgb(233, 192, 159);
+                    font-size: 23px;
+                }
+            }
         }
         .purchase-info {
             background-color: transparent;

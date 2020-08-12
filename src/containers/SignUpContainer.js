@@ -33,7 +33,7 @@ const SignUpContainerTest = props => {
         fullName: /^[A-Z][a-z]*\s([A-Z][a-z]*\s)*([AEIOU][a-z]*|[^AEIOU][a-z]+)\s*$/,
         phone: /^(09[\d]{8}|03[\d]{9})$/,
         email: /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
-        password: /^[A-Za-z\d~`!@#$%^&*()-_+=|}]{["':;?/>.<,]{6,32}$/,
+        password: /^[A-Za-z\d\~\`\!\@\#\$\%\^\&\*\(\)\-\_\+\=\|\}\]\{\[\"\'\:\;\?\/\>\.\<\,]{6,32}$/,
     }
 
     const [validation, setValidation] = useState({
